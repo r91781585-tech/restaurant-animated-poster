@@ -59,7 +59,7 @@
 
         .floating-element {
             position: absolute;
-            background: rgba(218, 165, 32, 0.1);
+            background: rgba(218, 165, 32, 0.15);
             border-radius: 50%;
             animation: float 15s infinite linear;
         }
@@ -97,7 +97,7 @@
             transform: scale(1);
         }
 
-        /* Hero Page - Similar to "ARRIVAL" template */
+        /* Hero Page */
         .hero-page {
             text-align: center;
             color: #f5f5f5;
@@ -120,7 +120,7 @@
             100% { text-shadow: 0 0 50px rgba(218, 165, 32, 0.6), 0 0 80px rgba(218, 165, 32, 0.2); }
         }
 
-        /* Central Focus Frame - Like the jewelry frame in template */
+        /* Central Focus Frame */
         .hero-focus {
             position: relative;
             width: clamp(250px, 40vw, 400px);
@@ -135,6 +135,7 @@
             justify-content: center;
             align-items: center;
             animation: framePulse 4s ease-in-out infinite;
+            overflow: hidden;
         }
 
         @keyframes framePulse {
@@ -142,10 +143,24 @@
             50% { border-color: rgba(218, 165, 32, 0.9); box-shadow: 0 0 40px rgba(218, 165, 32, 0.4); }
         }
 
+        .hero-focus::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80') center/cover;
+            opacity: 0.3;
+            border-radius: 17px;
+            z-index: -1;
+        }
+
         .hero-icon {
             font-size: clamp(3rem, 8vw, 5rem);
             margin-bottom: 1rem;
             animation: iconRotate 8s ease-in-out infinite;
+            filter: drop-shadow(0 0 10px rgba(218, 165, 32, 0.5));
         }
 
         @keyframes iconRotate {
@@ -162,6 +177,7 @@
             color: #f5f5f5;
             text-align: center;
             line-height: 1.4;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
 
         .hero-tagline {
@@ -185,12 +201,16 @@
             }
         }
 
-        /* Content Page - Grid Layout like template */
+        /* Content Page - CENTERED AND IMPROVED */
         .content-page {
             padding: 2rem;
             color: #f5f5f5;
-            max-width: 1000px;
             width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
         .content-title {
@@ -201,33 +221,69 @@
             margin-bottom: 3rem;
             color: #daa520;
             letter-spacing: 0.1em;
+            text-shadow: 0 0 20px rgba(218, 165, 32, 0.3);
         }
 
-        /* Grid Layout - 2x2 like the template */
+        /* CENTERED Grid Layout */
         .content-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: 1fr 1fr;
-            gap: 1.5rem;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 2rem;
+            width: 100%;
+            max-width: 900px;
             height: 60vh;
             max-height: 500px;
+            margin: 0 auto;
         }
 
         .content-item {
-            background: linear-gradient(135deg, rgba(218, 165, 32, 0.1) 0%, rgba(139, 69, 19, 0.1) 100%);
-            backdrop-filter: blur(15px);
-            border: 2px solid rgba(218, 165, 32, 0.3);
-            border-radius: 15px;
-            padding: 2rem;
+            background: linear-gradient(135deg, rgba(218, 165, 32, 0.15) 0%, rgba(139, 69, 19, 0.15) 100%);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(218, 165, 32, 0.4);
+            border-radius: 20px;
+            padding: 1.5rem;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            transition: all 0.5s ease;
+            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             animation: slideInGrid 1.2s ease-out both;
             position: relative;
             overflow: hidden;
+            cursor: pointer;
+        }
+
+        .content-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.2;
+            border-radius: 18px;
+            z-index: -1;
+            transition: all 0.6s ease;
+        }
+
+        .content-item:nth-child(1)::before {
+            background-image: url('https://images.unsplash.com/photo-1621996346565-e3dbc353d2e5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80');
+        }
+
+        .content-item:nth-child(2)::before {
+            background-image: url('https://images.unsplash.com/photo-1546833999-b9f581a1996d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80');
+        }
+
+        .content-item:nth-child(3)::before {
+            background-image: url('https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80');
+        }
+
+        .content-item:nth-child(4)::before {
+            background-image: url('https://images.unsplash.com/photo-1551024506-0bccd828d307?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80');
         }
 
         .content-item:nth-child(1) { animation-delay: 0.2s; }
@@ -236,15 +292,20 @@
         .content-item:nth-child(4) { animation-delay: 0.8s; }
 
         .content-item:hover {
-            transform: translateY(-5px);
-            border-color: rgba(218, 165, 32, 0.6);
-            box-shadow: 0 15px 35px rgba(218, 165, 32, 0.2);
+            transform: translateY(-10px) scale(1.05);
+            border-color: rgba(218, 165, 32, 0.8);
+            box-shadow: 0 20px 40px rgba(218, 165, 32, 0.3);
+        }
+
+        .content-item:hover::before {
+            opacity: 0.4;
+            transform: scale(1.1);
         }
 
         @keyframes slideInGrid {
             from {
                 opacity: 0;
-                transform: translateY(30px) scale(0.9);
+                transform: translateY(50px) scale(0.8);
             }
             to {
                 opacity: 1;
@@ -253,63 +314,55 @@
         }
 
         .item-icon {
-            font-size: clamp(2rem, 4vw, 3rem);
+            font-size: clamp(2.5rem, 5vw, 4rem);
             margin-bottom: 1rem;
             color: #daa520;
+            filter: drop-shadow(0 0 15px rgba(218, 165, 32, 0.6));
+            animation: iconBounce 2s ease-in-out infinite;
+        }
+
+        @keyframes iconBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
         }
 
         .item-title {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
-            font-weight: 600;
-            margin-bottom: 0.5rem;
+            font-size: clamp(1.3rem, 2.8vw, 2rem);
+            font-weight: 700;
+            margin-bottom: 0.8rem;
             color: #f5f5f5;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
 
         .item-description {
-            font-size: clamp(0.8rem, 1.5vw, 1rem);
-            opacity: 0.8;
-            line-height: 1.4;
-        }
-
-        /* Special center item for call-to-action */
-        .content-item.center-cta {
-            grid-column: 1 / -1;
-            background: linear-gradient(135deg, rgba(218, 165, 32, 0.2) 0%, rgba(139, 69, 19, 0.2) 100%);
-            border-color: rgba(218, 165, 32, 0.5);
-        }
-
-        .cta-button {
-            background: linear-gradient(135deg, #daa520 0%, #b8860b 100%);
-            color: #000;
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 8px;
-            font-family: 'Inter', sans-serif;
-            font-weight: 600;
             font-size: clamp(0.9rem, 1.8vw, 1.1rem);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 1rem;
-            letter-spacing: 0.05em;
+            opacity: 0.9;
+            line-height: 1.5;
+            font-weight: 400;
         }
 
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(218, 165, 32, 0.4);
+        .item-price {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1rem, 2vw, 1.4rem);
+            font-weight: 600;
+            color: #daa520;
+            margin-top: 0.5rem;
+            text-shadow: 0 0 10px rgba(218, 165, 32, 0.5);
         }
 
-        /* Responsive Design */
+        /* Enhanced Mobile Responsive */
         @media (max-width: 768px) {
             .content-grid {
                 grid-template-columns: 1fr;
                 grid-template-rows: repeat(4, 1fr);
-                gap: 1rem;
-                height: 70vh;
+                gap: 1.5rem;
+                height: 75vh;
+                max-height: 600px;
             }
             
-            .content-item.center-cta {
-                grid-column: 1;
+            .content-item {
+                padding: 1.2rem;
             }
             
             .hero-title {
@@ -322,25 +375,45 @@
                 width: clamp(200px, 60vw, 300px);
                 height: clamp(200px, 60vw, 300px);
             }
+            
+            .content-grid {
+                max-height: 70vh;
+            }
         }
 
-        /* Ambient Glow Effect */
+        /* Enhanced Ambient Effects */
         .ambient-glow {
             position: absolute;
             top: 50%;
             left: 50%;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(218, 165, 32, 0.1) 0%, transparent 70%);
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(218, 165, 32, 0.15) 0%, transparent 70%);
             border-radius: 50%;
             transform: translate(-50%, -50%);
-            animation: ambientPulse 6s ease-in-out infinite;
+            animation: ambientPulse 8s ease-in-out infinite;
             pointer-events: none;
         }
 
         @keyframes ambientPulse {
-            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.3; }
-            50% { transform: translate(-50%, -50%) scale(1.3); opacity: 0.1; }
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.4; }
+            50% { transform: translate(-50%, -50%) scale(1.4); opacity: 0.1; }
+        }
+
+        /* Sparkle Effects */
+        .sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #daa520;
+            border-radius: 50%;
+            animation: sparkle 3s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
         }
     </style>
 </head>
@@ -375,33 +448,37 @@
             </p>
         </div>
 
-        <!-- Content Page -->
+        <!-- Content Page - CENTERED AND ENHANCED -->
         <div class="page content-page" id="contentPage">
             <h2 class="content-title">OUR SPECIALTIES</h2>
             
             <div class="content-grid">
                 <div class="content-item">
-                    <div class="item-icon">🥘</div>
+                    <div class="item-icon">🍝</div>
                     <h3 class="item-title">Signature Pasta</h3>
                     <p class="item-description">Handmade fresh pasta with authentic Italian sauces and premium ingredients</p>
+                    <div class="item-price">From $24</div>
                 </div>
                 
                 <div class="content-item">
                     <div class="item-icon">🥩</div>
                     <h3 class="item-title">Prime Steaks</h3>
                     <p class="item-description">Perfectly grilled premium cuts served with seasonal vegetables and signature sides</p>
+                    <div class="item-price">From $42</div>
                 </div>
                 
                 <div class="content-item">
                     <div class="item-icon">🍷</div>
                     <h3 class="item-title">Wine Selection</h3>
                     <p class="item-description">Curated collection of fine wines from renowned vineyards around the world</p>
+                    <div class="item-price">From $18</div>
                 </div>
                 
                 <div class="content-item">
                     <div class="item-icon">🍰</div>
                     <h3 class="item-title">Artisan Desserts</h3>
                     <p class="item-description">Exquisite handcrafted desserts made by our award-winning pastry chef</p>
+                    <div class="item-price">From $12</div>
                 </div>
             </div>
         </div>
@@ -427,15 +504,16 @@
         // Auto-rotate every 5 seconds
         setInterval(rotatePage, 5000);
 
-        // Dynamic floating elements
+        // Enhanced floating elements
         function createFloatingElement() {
             const element = document.createElement('div');
             element.className = 'floating-element';
             element.style.left = Math.random() * 100 + '%';
             element.style.top = '100%';
-            element.style.width = (Math.random() * 8 + 4) + 'px';
+            element.style.width = (Math.random() * 10 + 6) + 'px';
             element.style.height = element.style.width;
-            element.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            element.style.animationDuration = (Math.random() * 8 + 12) + 's';
+            element.style.background = `rgba(218, 165, 32, ${Math.random() * 0.2 + 0.1})`;
             
             document.querySelector('.floating-elements').appendChild(element);
             
@@ -445,10 +523,28 @@
             }, 20000);
         }
 
-        // Generate new floating elements periodically
-        setInterval(createFloatingElement, 3000);
+        // Generate new floating elements more frequently
+        setInterval(createFloatingElement, 2000);
 
-        // Responsive handling
+        // Create sparkle effects
+        function createSparkle() {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.style.left = Math.random() * 100 + '%';
+            sparkle.style.top = Math.random() * 100 + '%';
+            sparkle.style.animationDelay = Math.random() * 2 + 's';
+            
+            document.querySelector('.poster-container').appendChild(sparkle);
+            
+            setTimeout(() => {
+                sparkle.remove();
+            }, 3000);
+        }
+
+        // Generate sparkles periodically
+        setInterval(createSparkle, 1500);
+
+        // Enhanced responsive handling
         function handleResize() {
             const container = document.querySelector('.poster-container');
             const isPortrait = window.innerHeight > window.innerWidth;
@@ -461,18 +557,34 @@
         }
 
         window.addEventListener('resize', handleResize);
-        handleResize(); // Initial call
+        handleResize();
 
-        // Add subtle parallax effect on mouse move
+        // Enhanced parallax effect
         document.addEventListener('mousemove', (e) => {
             const x = (e.clientX / window.innerWidth) * 2 - 1;
             const y = (e.clientY / window.innerHeight) * 2 - 1;
             
             const bgOverlay = document.querySelector('.bg-overlay');
             const ambientGlow = document.querySelector('.ambient-glow');
+            const floatingElements = document.querySelectorAll('.floating-element');
             
-            bgOverlay.style.transform = `translate(${x * 5}px, ${y * 5}px)`;
-            ambientGlow.style.transform = `translate(calc(-50% + ${x * 10}px), calc(-50% + ${y * 10}px))`;
+            bgOverlay.style.transform = `translate(${x * 3}px, ${y * 3}px)`;
+            ambientGlow.style.transform = `translate(calc(-50% + ${x * 15}px), calc(-50% + ${y * 15}px))`;
+            
+            floatingElements.forEach((element, index) => {
+                const speed = (index + 1) * 2;
+                element.style.transform += ` translate(${x * speed}px, ${y * speed}px)`;
+            });
+        });
+
+        // Add click effects to content items
+        document.querySelectorAll('.content-item').forEach(item => {
+            item.addEventListener('click', function() {
+                this.style.transform = 'translateY(-10px) scale(1.1)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 200);
+            });
         });
     </script>
 </body>
